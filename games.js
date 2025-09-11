@@ -1,94 +1,120 @@
-var gamePattern = [];
-var buttonColours = ["red", "blue", "green", "yellow"];     //yeh ek array hai jisme colour store hain
-var userClickedPattern = [];
+// =========================
+// Simon Game JS Code
+// =========================
 
-//hum track karenge ki koi key dabayi ya nahi then call karenge nextseq ko apna kam chalu karne ko
-var started = false;
-var level =0;
+// Game patterns
+var gamePattern = [];  // Computer generated sequence
+var buttonColours = ["red", "blue", "green", "yellow"];  // Possible button colors
+var userClickedPattern = [];  // User clicked sequence
 
-$(document).keypress(function(){
-  if (!started ){
-    $("#level-title").text("Level: "+ level);
-  nextSequence();
-  started = true;
+// Game state
+var started = false;  // Track if the game has started
+var level = 0;        // Current level
+
+// =========================
+// START GAME
+// =========================
+
+// Desktop: Start game
+function startGame(){
+
+  if (!started) {
+    nextSequence();   // Start the first sequence
+    started = true;   // Mark game as started
+    $("#start-btn").hide();   //mobile button hide hojaye
+    $("#level-title").text("Level: " + level);
   }
+}
+//mobile detect karna
+var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+if(!isMobile){
+  $(document).keydown(startGame);
+}
+if(isMobile){
+  $("#start-btn").show().click(startGame)
+}
+// Mobile: Start game on button click (optional, later integrate)
+$(".btn").on("click touchstart", function() {
+
+    var userChosenColour = $(this).attr("id");  // Get id of clicked button
+    userClickedPattern.push(userChosenColour);  // Add to user's pattern
+
+    animatePress(userChosenColour);  // Button press animation
+    playSound(userChosenColour);     // Play corresponding sound
+
+    checkAnswer(userClickedPattern.length - 1); // Check current answer
 });
 
+// =========================
+// GAME LOGIC FUNCTIONS
+// =========================
 
-$(".btn").on("click", function(){
-
-    var userChosenColour = $(this).attr("id");
-    userClickedPattern.push(userChosenColour);
-    animatePress(userChosenColour);
-    playSound(userChosenColour);
-
-    checkAnswer(userClickedPattern.length-1);
-});
-
-//abh main function ko run karenge jo game ka logic hai
-
-function checkAnswer(currentLevel){
+// Check user's answer against game pattern
+function checkAnswer(currentLevel) {
   if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
     console.log("Success");
 
-    // Agar dono pattern match kar gaye aur user ne poora sequence click kar liya
+    // If user has completed the full sequence
     if (userClickedPattern.length === gamePattern.length) {
-      setTimeout(function(){
-        nextSequence();
+      setTimeout(function() {
+        nextSequence();  // Generate next sequence after 1 second
       }, 1000);
     }
 
   } else {
     console.log("Wrong");
-    wrongAnsSound();
-    $("h1").text("Game Over, Press Any Key to Restart");
-    $("body").addClass("game-over");
-    setTimeout(function(){
-      $("body").removeClass("game-over");
-    },200);
-    startOver();
+    wrongAnsSound();  // Play wrong sound
+
+    $("h1").text("Game Over, Press Any Key to Restart");  // Game over message
+    $("body").addClass("game-over");  // Flash red background
+
+    setTimeout(function() {
+      $("body").removeClass("game-over");  // Remove flash
+    }, 200);
+
+    startOver();  // Reset game
   }
 }
 
-
-
-function nextSequence(){
-
-  userClickedPattern = [];
-  level++;
+// Generate next sequence
+function nextSequence() {
+  userClickedPattern = [];  // Reset user clicks for next level
+  level++;                  // Increase level
   $("#level-title").text("Level " + level);
 
-    var randNumber = Math.floor(Math.random() * 4);
-    var randChosenColor = buttonColours[randNumber];
-    gamePattern.push(randChosenColor);
+  var randNumber = Math.floor(Math.random() * 4); // Random number 0-3
+  var randChosenColor = buttonColours[randNumber]; // Random color
+  gamePattern.push(randChosenColor); // Add to game pattern
 
-    $("#" + randChosenColor).fadeIn(100).fadeOut(100).fadeIn(100);
+  // Animate button flash
+  $("#" + randChosenColor).fadeIn(100).fadeOut(100).fadeIn(100);
 
-    playSound(randChosenColor);
-
+  playSound(randChosenColor); // Play color sound
 }
 
-function playSound(name){
-      var audio = new Audio("sounds/"+name+".mp3")
-    audio.play();
+// Play sound for given color
+function playSound(name) {
+  var audio = new Audio("sounds/" + name + ".mp3");
+  audio.play();
 }
 
-
-function animatePress(currentColor){
-  $("#" +currentColor).addClass("pressed");
-  
-  setTimeout(function(){
-    $("#" +currentColor).removeClass("pressed");
+// Animate button press
+function animatePress(currentColor) {
+  $("#" + currentColor).addClass("pressed");
+  setTimeout(function() {
+    $("#" + currentColor).removeClass("pressed");
   }, 100);
 }
 
-function wrongAnsSound(){
+// Play wrong answer sound
+function wrongAnsSound() {
   var audio = new Audio("sounds/wrong.mp3");
   audio.play();
 }
 
-//jab game over hojaye toh start over karna hoga
-function startOver(){
+// Reset game state
+function startOver() {
   level = 0;
   gamePattern = [];
   started = false;

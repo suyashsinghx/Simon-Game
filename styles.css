@@ -117,3 +117,30 @@ footer {
   font-size: 0.9rem;
   letter-spacing: 1px;
 }
+
+#start-btn {
+  display: none;                /* default hidden */
+  background-color: #011F3F;    /* match game bg */
+  color: #fff;
+  font-family: 'Press Start 2P', cursive; /* retro game font */
+  font-size: 1rem;
+  padding: 12px 25px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* hover/tap feedback */
+#start-btn:hover {
+  background-color: #fff;
+  color: #011F3F;
+}
+
+#start-btn:active {
+  transform: translate(-50%, -50%) scale(0.95);
+}
