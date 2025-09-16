@@ -6,7 +6,7 @@ var userClickedPattern = [];
 var started = false;
 var level = 0;
 
-// ------------------ GAME START (Laptop) ------------------
+// ------------------ GAME START (Keyboard) ------------------
 $(document).keypress(function () {
   if (!started) {
     startGame();
@@ -24,6 +24,7 @@ $("#start-btn").on("click", function () {
 function startGame() {
   level = 0;
   gamePattern = [];
+  userClickedPattern = [];
   started = true;
 
   $("#start-btn").hide(); // hide start button after click
@@ -32,7 +33,7 @@ function startGame() {
 }
 
 // ------------------ USER CLICK ------------------
-$(".btn").on("click", function () {
+$(".color-btn").on("click", function () {
   var userChosenColour = $(this).attr("id");
   userClickedPattern.push(userChosenColour);
 

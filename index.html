@@ -1,30 +1,62 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simon ~Suyash</title>
-  <link rel="stylesheet" href="styles.css">
+
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <h1 id="level-title">Press A Key to Start</h1>
 
-  <!-- Game board -->
-  <div class="container">
-    <div id="green" class="btn green"></div>
-    <div id="red" class="btn red"></div>
-    <div id="yellow" class="btn yellow"></div>
-    <div id="blue" class="btn blue"></div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Simon Game</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="rules.html">Rules</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Game Title -->
+  <h1 id="level-title">Press Key or Start to Play</h1>
+
+  <!-- Game Board -->
+  <div class="game-board">
+    <div id="green" class="color-btn green"></div>
+    <div id="red" class="color-btn red"></div>
+    <div id="yellow" class="color-btn yellow"></div>
+    <div id="blue" class="color-btn blue"></div>
   </div>
 
-  <!-- Start button (for mobile) -->
+  <!-- Start Button -->
   <button id="start-btn">Start Game</button>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="games.js" charset="utf-8"></script>
-</body>
+  <!-- Footer -->
+  <footer>🌟 Made with Fun ❤️ & Code – Suyash Singh</footer>
 
-<footer>🌟 Made with Fun ❤️ & Code – Suyash Singh</footer>
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <!-- Custom JS -->
+  <script src="games.js"></script>
+</body>
 </html>
