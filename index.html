@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simon</title>
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
@@ -10,36 +10,21 @@
 
 <body>
   <h1 id="level-title">Press A Key to Start</h1>
+
+  <!-- Game board -->
   <div class="container">
-    <div class="row">
-
-      <div type="button" id="green" class="btn green">
-
-      </div>
-
-      <div type="button" id="red" class="btn red">
-
-      </div>
-    </div>
-
-    <div class="row">
-
-      <div type="button" id="yellow" class="btn yellow">
-
-      </div>
-      <div type="button" id="blue" class="btn blue">
-
-      </div>
-
-    </div>
-
+    <div id="green" class="btn green"></div>
+    <div id="red" class="btn red"></div>
+    <div id="yellow" class="btn yellow"></div>
+    <div id="blue" class="btn blue"></div>
   </div>
-  <button id="start-btn" style="display: none;">Start Game</button>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="games.js" charset="utf-8"></script>
+  <!-- Start button (for mobile) -->
+  <button id="start-btn">Start Game</button>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="games.js" charset="utf-8"></script>
 </body>
 
 <footer>🌟 Made with Fun ❤️ & Code – Suyash Singh</footer>
-
 </html>

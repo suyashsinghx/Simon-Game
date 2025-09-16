@@ -26,7 +26,7 @@ function startGame() {
   gamePattern = [];
   started = true;
 
-  $("#start-btn").hide(); // hide start button
+  $("#start-btn").hide(); // hide start button after click
   $("#level-title").text("Level " + level);
   nextSequence();
 }
@@ -65,7 +65,10 @@ function nextSequence() {
   var randChosenColor = buttonColours[randNumber];
   gamePattern.push(randChosenColor);
 
-  $("#" + randChosenColor).fadeIn(100).fadeOut(100).fadeIn(100);    //animation
+  $("#" + randChosenColor)
+    .fadeIn(100)
+    .fadeOut(100)
+    .fadeIn(100); // animation
   playSound(randChosenColor);
 }
 
@@ -79,7 +82,7 @@ function gameOver() {
 
   $("#level-title").text("Game Over! Press Key or Start Again");
   started = false;
-  $("#start-btn").show(); // show button again
+  $("#start-btn").show(); // show start button again
 }
 
 // ------------------ SOUND ------------------
