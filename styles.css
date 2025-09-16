@@ -92,21 +92,3 @@ footer {
   letter-spacing: 1px;
 }
 
-/* Rules Section */
-#rules {
-  font-size: 1.1rem;       /* thoda bada text */
-  line-height: 1.7;        /* spacing between lines */
-  max-width: 700px;
-  margin: 20px auto;
-  text-align: left;        /* easy to read */
-}
-
-/* About Section */
-#about p {
-  font-size: 1.1rem;       /* thoda bada text */
-  line-height: 1.7;        /* spacing between lines */
-}
-#about h2 {
-  font-size: 2rem;         /* headings thode bade */
-  margin-bottom: 20px;
-}
